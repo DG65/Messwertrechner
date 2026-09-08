@@ -75,6 +75,26 @@
         },
         {
           "type": "Label",
+          "caption": "Änderungsrate (Trend): (letzter Wert − erster Wert im Fenster) / verstrichene Zeit, umgerechnet auf die Spalte 'Trend-Basis'. 'Fenster' bestimmt hier den Rückblick-Zeitraum. Braucht mindestens zwei Messpunkte."
+        },
+        {
+          "type": "Label",
+          "caption": "Integration (Aufsummierung über Zeit): summiert den Wert über die Zeit auf (Trapezregel), z.B. Watt → Wattstunden/Kilowattstunden. 'Fenster'/'Einheit' werden ignoriert — stattdessen bestimmt die Spalte 'Integrations-Einstellung' Reset-Rhythmus und Ausgabegröße. Manueller Reset per Skript: RAVG_ResetChannel($id, 'Bezeichnung')."
+        },
+        {
+          "type": "Label",
+          "caption": "Schwellwert mit Hysterese: Ausgabe 0/1, wird aktiv bei Erreichen der 'Schwelle Ein', bleibt aktiv bis zum Erreichen der 'Schwelle Aus'. 'Schwelle Ein' ≥ 'Schwelle Aus' = aktiv bei Überschreiten (z.B. PV-Überschuss: an ab 500, aus erst unter 200); 'Schwelle Ein' < 'Schwelle Aus' = aktiv bei Unterschreiten (z.B. SOC-Warnung: an ab 20, aus erst ab 30). 'Fenster'/'Einheit' werden ignoriert, es zählt der Momentanwert."
+        },
+        {
+          "type": "Label",
+          "caption": "Formel (freier Ausdruck): eigene Rechenformel in der Spalte 'Formel', mit x1 = Quelle und x2 = Quelle 2 (roh, ohne 'Verknüpfung'/'Invertieren' — die Formel übernimmt das selbst). Erlaubt: + − * / % ^, Klammern, Vergleiche (< <= > >= == !=, liefern 1/0), Funktionen abs/round/floor/ceil/min/max/sqrt/pow/log/log10/exp/sin/cos/tan sowie if(bedingung,dann,sonst). Beispiele: 'x1 * 9/5 + 32' (°C→°F), 'x1 - x2' (Differenz), 'if(x1>x2, x1, x2)' (Maximum als bedingter Ausdruck). Bei ungültiger Formel bleibt der Wert einfach stehen (kein Absturz)."
+        },
+        {
+          "type": "Label",
+          "caption": "Ausreißer filtern (nur bei den Fenster-Methoden 0-8 wirksam): verwirft einen neuen Wert, wenn er mehr als 'Schwelle (σ)' Standardabweichungen vom Durchschnitt der bisherigen Fensterwerte abweicht — verhindert, dass ein einzelner Sensor-Ausrutscher den Mittelwert kurzzeitig verzerrt. Braucht mindestens 3 vorhandene Werte im Fenster, um zu greifen."
+        },
+        {
+          "type": "Label",
           "caption": "Nachkommastellen: 'Automatisch' übernimmt das Profil der Quelle (falls vorhanden). Feste Anzahl überschreibt das und greift auch, wenn die Quelle kein Profil hat."
         }
       ]
@@ -230,6 +250,136 @@
               {
                 "caption": "Summe",
                 "value": 7
+              },
+              {
+                "caption": "Änderungsrate (Trend)",
+                "value": 8
+              },
+              {
+                "caption": "Integration (Aufsummierung über Zeit)",
+                "value": 9
+              },
+              {
+                "caption": "Schwellwert mit Hysterese",
+                "value": 10
+              },
+              {
+                "caption": "Formel (freier Ausdruck)",
+                "value": 11
+              }
+            ]
+          },
+          "save": true
+        },
+        {
+          "caption": "Formel",
+          "name": "Formula",
+          "width": "220px",
+          "add": "x1",
+          "edit": {
+            "type": "ValidationTextBox"
+          },
+          "save": true
+        },
+        {
+          "caption": "Ausreißer filtern",
+          "name": "OutlierFilter",
+          "width": "110px",
+          "add": false,
+          "edit": {
+            "type": "CheckBox"
+          },
+          "save": true
+        },
+        {
+          "caption": "Schwelle (σ)",
+          "name": "OutlierFactor",
+          "width": "90px",
+          "add": 3,
+          "edit": {
+            "type": "NumberSpinner",
+            "digits": 1,
+            "minimum": 0.1
+          },
+          "save": true
+        },
+        {
+          "caption": "Schwelle Ein",
+          "name": "HysteresisOn",
+          "width": "90px",
+          "add": 0,
+          "edit": {
+            "type": "NumberSpinner",
+            "digits": 2
+          },
+          "save": true
+        },
+        {
+          "caption": "Schwelle Aus",
+          "name": "HysteresisOff",
+          "width": "90px",
+          "add": 0,
+          "edit": {
+            "type": "NumberSpinner",
+            "digits": 2
+          },
+          "save": true
+        },
+        {
+          "caption": "Trend-Basis",
+          "name": "RateUnit",
+          "width": "100px",
+          "add": 2,
+          "edit": {
+            "type": "Select",
+            "options": [
+              {
+                "caption": "je Sekunde",
+                "value": 0
+              },
+              {
+                "caption": "je Minute",
+                "value": 1
+              },
+              {
+                "caption": "je Stunde",
+                "value": 2
+              },
+              {
+                "caption": "je Tag",
+                "value": 3
+              }
+            ]
+          },
+          "save": true
+        },
+        {
+          "caption": "Integrations-Einstellung",
+          "name": "IntegrationPreset",
+          "width": "230px",
+          "add": 1,
+          "edit": {
+            "type": "Select",
+            "options": [
+              {
+                "caption": "Täglich zurücksetzen → Wh",
+                "value": 0
+              },
+              {
+                "caption": "Täglich zurücksetzen → kWh",
+                "value": 1
+              },
+              {
+                "caption": "Monatlich zurücksetzen → kWh",
+                "value": 2
+              },
+              {
+                "caption": "Nie automatisch (nur manuell) → kWh",
+                "value": 3
+              },
+              {
+                "caption": "Nie automatisch (nur manuell) → Rohsumme (Wert×Sekunden)",
+                "value": 4
               }
             ]
           },
@@ -275,7 +425,7 @@
     },
     {
       "type": "Label",
-      "caption": "Pro Kanal werden zwei Variablen angelegt: der Mittelwert (Anzeige) und ein versteckter Ringpuffer (interner Zwischenspeicher, kein Archiv nötig). Zeilen können per Drag & Drop umsortiert werden."
+      "caption": "Pro Kanal werden zwei Variablen angelegt: der berechnete Wert (Anzeige) und ein versteckter Ringpuffer bzw. Integrations-Speicher (interner Zwischenspeicher, kein Archiv nötig). Zeilen können per Drag & Drop umsortiert werden."
     }
   ],
   "actions": [],

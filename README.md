@@ -1,12 +1,18 @@
-# Gleitender Mittelwert (RollingAverage)
+# Destille (vormals Gleitender Mittelwert)
 
 ![Symcon](https://img.shields.io/badge/Symcon-PHPModul-blue)
-![Modul Version](https://img.shields.io/badge/Modul_Version-1.7.1-blue)
+![Modul Version](https://img.shields.io/badge/Modul_Version-1.12.2-blue)
 ![Symcon Version](https://img.shields.io/badge/Symcon_Version-9.0%2B-blue)
 ![License](https://img.shields.io/badge/License-PolyForm_Noncommercial_1.0.0-lightgrey)
 [![PayPal](https://img.shields.io/badge/PayPal-Me-blue?logo=paypal)](https://paypal.me/DietmarGureth)
 
-IP-Symcon-Modul zur Berechnung gleitender Mittelwerte beliebiger Variablen — konfigurierbar über eine Liste von Kanälen, ganz ohne Abhängigkeit vom Archiv-System.
+IP-Symcon-Modul, das aus rohen, verrauschten Werten beliebiger Variablen laufend etwas Klareres destilliert: Mittelwert, Trend, Integration über Zeit, Schwellwert mit Hysterese, freie Formel — konfigurierbar über eine Liste von Kanälen, ganz ohne Abhängigkeit vom Archiv-System.
+
+**Namenshinweis:** Bis Version 1.12.1 hieß dieses Modul „Gleitender Mittelwert" — der neue Name spiegelt den inzwischen deutlich gewachsenen Funktionsumfang (nicht mehr nur Mittelwertbildung). Technisch ändert sich nichts: Klassenname, Modul-ID und alle Bestandsinstanzen bleiben unverändert, „Gleitender Mittelwert" bleibt als Alias auffindbar (`module.json→aliases`).
+
+## DG65 Toolkit
+
+Teil des **DG65 Toolkit** — domänenfreie, wiederverwendbare Symcon-Bausteine (im Unterschied zum energiespezifischen NRG-Stack desselben Autors). Weitere Mitglieder: Katasteramt (Objektbaum-Organisation, vormals StrukturHub), Pförtner (Formular-Zugriffsschutz, vormals Türöffner), Vormund (Modul-Migration, vormals MigrationsHub). Ein Toolkit-Modul funktioniert immer für sich allein und setzt kein anderes voraus — geteilt werden Entwicklungskonventionen, kein Laufzeit-Vertrag.
 
 ## Wofür braucht man das?
 
@@ -48,12 +54,21 @@ Pro Kanal:
 | Quelle 2 (optional) | Zweite Variable, die vor der Mittelung mit Quelle 1 verrechnet wird |
 | Verknüpfung | Nur Quelle 1 / Quelle1 + Quelle2 / Quelle1 − Quelle2 |
 | Invertieren | Kehrt das Vorzeichen des verrechneten Momentanwerts um, bevor er in den Puffer geht |
-| Fenster | Zahlenwert der Fenster-Dauer |
-| Einheit | Sekunden / Minuten / Stunden / Tage |
+| Fenster | Zahlenwert der Fenster-Dauer (bei „Integration" ohne Wirkung — siehe unten) |
+| Einheit | Sekunden / Minuten / Stunden / Tage (bei „Integration" ohne Wirkung) |
 | Methode | Berechnungsart (siehe unten) |
+| Trend-Basis | Nur bei Methode „Änderungsrate": Zeitbasis der Ausgabe (je Sekunde/Minute/Stunde/Tag) |
+| Integrations-Einstellung | Nur bei Methode „Integration": Reset-Rhythmus + Ausgabegröße (siehe unten) |
+| Schwelle Ein / Schwelle Aus | Nur bei Methode „Schwellwert mit Hysterese": die beiden Umschaltpunkte (siehe unten) |
+| Formel | Nur bei Methode „Formel": der Rechenausdruck mit x1/x2 (siehe unten) |
+| Ausreißer filtern / Schwelle (σ) | Nur bei den Fenster-Methoden 0-8: verwirft einzelne Sensor-Ausrutscher (siehe unten) |
 | Nachkommastellen | „Automatisch" übernimmt das Profil der Quelle (falls vorhanden); eine feste Zahl (0–4) überschreibt das und greift auch, wenn die Quelle kein Profil hat |
 
 Zeilen können per Drag & Drop umsortiert werden.
+
+### Ausreißer filtern
+
+Optionale Vorverarbeitung für die Fenster-Methoden (Arithmetisch bis Änderungsrate, Mode 0-8): verwirft einen neuen Messwert, wenn er mehr als „Schwelle (σ)" Standardabweichungen vom Durchschnitt der bisherigen Fensterwerte abweicht — bevor der Ausreißer den Mittelwert kurzzeitig verzerrt. Braucht mindestens 3 vorhandene Werte im Fenster, um zu greifen (eine Standardabweichung aus 0-2 Werten ist statistisch nicht aussagekräftig). Der Ausreißer wird nicht in den Puffer aufgenommen, das Fenster altert aber normal weiter (alte Werte fallen wie gewohnt heraus, auch während gerade ein Ausreißer verworfen wird). Bei Integration/Hysterese/Formel (Mode 9-11) ohne Wirkung, da diese ohnehin nicht auf dem Fenster-Puffer arbeiten.
 
 ### Zwei Quellen verrechnen
 
@@ -117,6 +132,48 @@ Neuere Werte zählen stärker als ältere (exponentiell abklingende Gewichtung).
 
 Aufsummierte Werte im Fenster statt eines Mittelwerts — beantwortet eine andere Frage (z. B. Gesamtenergie der letzten Stunde statt Durchschnittsleistung).
 
+**Änderungsrate (Trend)**
+
+`Rate = (vₙ − v₁) / (tₙ − t₁) · Zeitbasis`
+
+Wie schnell steigt oder fällt der Wert im Fenster — z. B. Temperaturanstieg in °C/h, Luftdruckänderung in hPa/h oder Batterie-Lade-/Entladerate. Das „Fenster" bestimmt hier den Rückblick-Zeitraum, „Trend-Basis" die Zeiteinheit der Ausgabe (unabhängig vom Fenster wählbar). Braucht mindestens zwei Messpunkte im Fenster, sonst bleibt der Wert unverändert.
+
+**Integration (Aufsummierung über Zeit)**
+
+`Akkumulator += (vᵢ₋₁ + vᵢ) / 2 · Δtᵢ` (Trapezregel), Ausgabe = Akkumulator ÷ Divisor der gewählten „Integrations-Einstellung"
+
+Summiert den Wert über die Zeit auf statt über ein festes Fenster zu mitteln — der klassische Fall ist eine Momentanleistung (W) ohne eigenen Energiezähler, aus der so eine Energiemenge (Wh/kWh) entsteht. Anders als bei den übrigen Methoden gelten „Fenster"/„Einheit" hier **nicht**: Die Summe läuft unbegrenzt weiter, bis entweder die gewählte „Integrations-Einstellung" einen automatischen Reset auslöst (täglich zur lokalen Mitternacht oder monatlich zum 1.) oder ein Skript/Ereignis `RAVG_ResetChannel($id, 'Bezeichnung')` aufruft (z. B. zum Start eines Ladezyklus oder einer Abrechnungsperiode). Bei „Nie automatisch" bleibt der Akkumulator bestehen, bis er manuell zurückgesetzt wird.
+
+**Schwellwert mit Hysterese**
+
+Ausgabe 0 (inaktiv) oder 1 (aktiv). Bleibt aktiv/inaktiv, bis der jeweils **andere** Schwellwert erreicht wird — verhindert das Flattern eines einzelnen Schwellwerts nahe der Grenze. Die Richtung ergibt sich automatisch aus dem Verhältnis der beiden Schwellen:
+
+- **„Schwelle Ein" ≥ „Schwelle Aus"** → aktiv bei Überschreiten (z. B. PV-Überschuss: an ab 500 W, aus erst unter 200 W)
+- **„Schwelle Ein" < „Schwelle Aus"** → aktiv bei Unterschreiten (z. B. SOC-Warnung: an ab 20 %, aus erst ab 30 %)
+
+Wie bei „Integration" gelten „Fenster"/„Einheit" hier nicht — die Ausgabe reagiert direkt auf den Momentanwert der Quelle. Wer Glättung UND Hysterese kombinieren möchte, verkettet zwei Kanäle: ein Mittelwert-Kanal (z. B. Arithmetisch) als Quelle eines zweiten, nachgeschalteten Hysterese-Kanals.
+
+**Formel (freier Ausdruck)**
+
+Eigene Rechenformel in der Spalte „Formel", mit `x1` = Quelle und `x2` = Quelle 2 — **roh**, ohne „Verknüpfung"/„Invertieren" (die Formel übernimmt jede gewünschte Verrechnung selbst). Erlaubt:
+
+- Grundrechenarten `+ − * / % ^` und Klammern
+- Vergleiche `< <= > >= == !=` (liefern `1`/`0`)
+- Funktionen: `abs round floor ceil min max sqrt pow log log10 exp sin cos tan` sowie `if(bedingung, dann, sonst)` für bedingte Ausdrücke
+
+Beispiele:
+
+| Formel | Ergebnis |
+|---|---|
+| `x1 * 9/5 + 32` | °C → °F |
+| `x1 - x2` | Differenz zweier Quellen |
+| `if(x1 > x2, x1, x2)` | Maximum als bedingter Ausdruck |
+| `sqrt(x1^2 + x2^2)` | Betrag eines Vektors aus zwei Komponenten |
+
+Wie bei Hysterese gelten „Fenster"/„Einheit" nicht. Bei einer ungültigen Formel (Syntaxfehler, Division durch 0, unbekannte Variable/Funktion) bleibt der bisherige Wert einfach stehen — kein Absturz, aber auch keine eigene Fehlermeldung im Formular; erkennbar daran, dass sich der Wert nach „Übernehmen" nicht mehr aktualisiert.
+
+**Sicherheitshinweis:** Die Formel wird über einen eigenen, geschriebenen Ausdrucks-Parser ausgewertet — es kommt an keiner Stelle `eval()` zum Einsatz. Nur die oben genannten Funktionen sind erlaubt (feste Positivliste).
+
 ![Summe](docs/img/sum.png)
 
 Pro Kanal legt das Modul zwei Variablen an:
@@ -134,4 +191,6 @@ Beide Variablen dürfen frei im Objektbaum verschoben werden (auch in die Katego
 
 ## Lizenz
 
-MIT, siehe [LICENSE](LICENSE).
+PolyForm Noncommercial 1.0.0 — privat und nicht-kommerziell frei nutzbar, siehe [LICENSE](LICENSE). Für den gewerblichen Einsatz ist eine gesonderte Lizenz vom Rechteinhaber nötig (Kontakt: dietmar@gureth.eu). Ältere Versionen bis zum Lizenzwechsel (siehe Changelog) bleiben unter MIT.
+
+Gefällt dir das Modul und du möchtest trotzdem etwas dalassen? Über eine kleine Spende via [PayPal](https://paypal.me/DietmarGureth) freue ich mich — völlig freiwillig, keine Gegenleistung nötig.

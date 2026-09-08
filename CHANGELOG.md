@@ -3,6 +3,50 @@
 Alle nennenswerten Änderungen an diesem Modul werden hier dokumentiert.
 Format angelehnt an [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
 
+## [1.12.2] - 2026-09-09
+
+### Changed
+- Modul umbenannt: „Gleitender Mittelwert" → **„Destille"** — Ergebnis eines gemeinsamen Namensfindungsprozesses aller vier DG65-Toolkit-Mitglieder (Dietmars Wunsch: zweideutig/anregend statt nur beschreibend). Sicherer, additiver Rename: nur `library.json→name` geändert + „Destille" als weiterer `module.json→aliases`-Eintrag ergänzt — Klassenname (`RollingAverage`), Modul-ID und damit alle Bestandsinstanzen bleiben unverändert (siehe [[ips-module-pitfalls]] Punkt 4: ein Klassenname-Rename würde jede bestehende Instanz brechen)
+- README-Titel und Kurzbeschreibung an den neuen Namen angepasst, mit Namenshinweis für Bestandsnutzer
+
+## [1.12.1] - 2026-09-08
+
+### Changed
+- `library.json`-Name auf „DG65 Toolkit Gleitender Mittelwert" umgestellt, README um „Teil des DG65 Toolkit"-Abschnitt ergänzt — nach Abstimmung mit StrukturHub und Dietmar (08.09.2026): GleitenderMittelwert und StrukturHub bilden das Gründungspaar eines neuen, energieunabhängigen Verbunds für domänenfreie Symcon-Bausteine (Abgrenzung zu NRG-Stack)
+
+## [1.12.0] - 2026-09-08
+
+### Added
+- Neue Option „Ausreißer filtern" (Fenster-Methoden 0-8): verwirft einzelne Sensor-Ausrutscher, die um mehr als eine konfigurierbare Anzahl Standardabweichungen vom bisherigen Fenster-Durchschnitt abweichen, bevor sie den Mittelwert verzerren
+
+## [1.11.0] - 2026-09-08
+
+### Added
+- Neue Berechnungsmethode „Formel (freier Ausdruck)" — eigener Rechenausdruck mit x1/x2 (Quelle/Quelle 2), Grundrechenarten, Vergleiche, Klammern, Funktionen (abs/round/floor/ceil/min/max/sqrt/pow/log/log10/exp/sin/cos/tan) und `if(bedingung,dann,sonst)`. Ausgewertet über einen eigenen, sicheren Ausdrucks-Parser (kein `eval()`, feste Funktions-Positivliste)
+
+## [1.10.0] - 2026-09-08
+
+### Added
+- Neue Berechnungsmethode „Schwellwert mit Hysterese" (Ausgabe 0/1, zwei Schwellen „Schwelle Ein"/„Schwelle Aus", Richtung automatisch aus deren Verhältnis abgeleitet) — verhindert das Flattern eines einzelnen Schwellwerts nahe der Grenze
+
+## [1.9.0] - 2026-09-08
+
+### Added
+- Zwei neue Berechnungsmethoden: „Änderungsrate (Trend)" (Änderung des Werts je Sekunde/Minute/Stunde/Tag, neue Spalte „Trend-Basis") und „Integration (Aufsummierung über Zeit)" (z. B. Watt → Wh/kWh per Trapezregel, neue Spalte „Integrations-Einstellung" mit täglichem/monatlichem/manuellem Reset)
+- Neue öffentliche Funktion `RAVG_ResetChannel($id, $Bezeichnung)` — setzt einen Integrations-Kanal manuell zurück (z. B. für Ladezyklen/Abrechnungsperioden per Skript/Ereignis)
+
+### Changed
+- Formular/README/Doku-Panel um die beiden neuen Methoden ergänzt
+
+## [1.8.0] - 2026-09-08
+
+### Added
+- Formular an die verbundweite NRG-Stack-Optik angeglichen: "👋 Wozu dieses Modul?"-Einführung, "🆕 Neu in Version X.Y"-Panel, allgemeines "📖 Dokumentation & Hilfe"-Panel mit Versionsnummer, Symcon-Forum-Hinweis und "🧡 Über dieses Modul"-Lizenz-/Spenden-Panel
+
+### Changed
+- `library.json`: Modulname von "Gleitender Mittelwert für IP-Symcon" auf "Gleitender Mittelwert" gekürzt (Store-Konvention: kein "IPS"/"Symcon" im Namen). Bewusst ohne "NRG-Stack"-Präfix — dieses Modul ist ein eigenständiges, generisches Rechenwerkzeug ohne Energie-/PV-Bezug, keine NRG-Stack-Marke
+- README: Lizenzabschnitt korrigiert (stand noch auf MIT, obwohl die LICENSE-Datei bereits PolyForm Noncommercial 1.0.0 trägt)
+
 ## [1.7.1] - 2026-07-11
 
 ### Changed

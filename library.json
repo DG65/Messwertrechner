@@ -1,12 +1,12 @@
 {
   "id": "{E52A0AC2-D2DD-4B7D-97BC-CC07AD8DD1AA}",
   "author": "DG65",
-  "name": "Gleitender Mittelwert für IP-Symcon",
+  "name": "DG65 Toolkit Destille",
   "url": "https://github.com/DG65/NRGGleitenderMittelwert",
   "compatibility": {
     "version": "9.0"
   },
-  "version": "1.7.1",
-  "build": 20260709,
-  "date": 1783555200
+  "version": "1.12.2",
+  "build": 20260908,
+  "date": 1788825600
 }

@@ -4,7 +4,8 @@
   "type": 3,
   "vendor": "",
   "aliases": [
-    "Gleitender Mittelwert"
+    "Gleitender Mittelwert",
+    "Destille"
   ],
   "url": "https://github.com/DG65/NRGGleitenderMittelwert",
   "parentRequirements": [],
