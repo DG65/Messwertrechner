@@ -1,24 +1,31 @@
 # Messwertrechner, vormals Destille/GleitenderMittelwert (RollingAverage) — Hinweise für die Arbeit an diesem Repository
 
-**Umbenennung 13.10.2026 (in Umsetzung, Teil 1 von 2 abgeschlossen):** Verbundweite Umstellung
-aller DG65-Toolkit-Mitglieder von Behörden-/Personen-Namen auf Funktionsnamen (Dietmar, über die
-Automat-Sitzung koordiniert — siehe `TOOLKIT.md` Abschnitt „Umbenennung auf Funktionsnamen").
-Dieses Modul heißt jetzt **„Messwertrechner"**. Schreibweise des Verbunds zugleich auf
-„DG65-Toolkit" (mit Bindestrich) vereinheitlicht.
+**Umbenennung 13.10.2026 (abgeschlossen, Klasse/Präfix dauerhaft eingefroren):** Verbundweite
+Umstellung aller DG65-Toolkit-Mitglieder von Behörden-/Personen-Namen auf Funktionsnamen
+(Dietmar, über die Automat-Sitzung koordiniert — siehe `TOOLKIT.md` Abschnitt „Umbenennung auf
+Funktionsnamen"). Dieses Modul heißt jetzt **„Messwertrechner"**. Schreibweise des Verbunds
+zugleich auf „DG65-Toolkit" (mit Bindestrich) vereinheitlicht.
 
-- **Erledigt:** `library.json→name` = „DG65-Toolkit Messwertrechner", `module.json→aliases` =
+- **Umgesetzt:** `library.json→name` = „DG65-Toolkit Messwertrechner", `module.json→aliases` =
   genau `["DG65-Toolkit Messwertrechner"]` (ältere Aliase „Gleitender Mittelwert"/„Destille"
-  entfernt — Verbundregel „genau EIN Alias"). README/CHANGELOG nachgezogen. Version 1.12.3,
-  auf `beta` gepusht.
-- **Gesperrt bis Dietmar bestätigt, dass es keine fremden Store-Installationen gibt:**
-  Klassenname `RollingAverage`→`Messwertrechner`, Modulordner `RollingAverage/`→
-  `Messwertrechner/`, Präfix `RAVG`→`MWR`, Repo-Umbenennung `DG65/NRGGleitenderMittelwert`→
-  `DG65/Messwertrechner`. Grund: dieses Modul ist im Symcon Store gelistet
-  ("Mittelwertberechnungen") — ein Klassenname-Wechsel bricht jede bestehende Instanz
-  ("Class ... does not exist", siehe [[ips-module-pitfalls]] Punkt 4), auch bei Nutzern, die
-  nie mit Dietmar in Kontakt stehen. **Vollständig vorbereitet auf dem lokalen Branch
-  `rename-messwertrechner`** (nicht gepusht, nicht gemergt) — sobald Dietmar grünes Licht gibt,
-  diesen Branch fertigstellen/mergen statt neu zu entwerfen.
+  entfernt — Verbundregel „genau EIN Alias"). News-Panel-Eintrag ergänzt (NEWS_VERSION auf
+  1.12.3). README/CHANGELOG nachgezogen. Version 1.12.3, auf `beta` gepusht.
+- **Dauerhaft NICHT umgesetzt — Klassenname `RollingAverage`, Präfix `RAVG_`, Modulordner
+  `RollingAverage/` bleiben für immer so.** Erst versuchsweise auf einem lokalen Branch
+  (`rename-messwertrechner`) vorbereitet, dann wieder verworfen: Dietmar hat die
+  Symcon-Store-Statistik geprüft — Bundle „Mittelwertberechnungen", Stable 1.7.0 seit
+  09.07.2026, **42 Downloads gesamt, 3/Monat** — reale Installationen bei fremden Nutzern sind
+  damit so gut wie sicher. Ein Klassenname-/Präfix-Wechsel würde deren Instanzen brechen
+  ("Class ... does not exist", siehe [[ips-module-pitfalls]] Punkt 4) bzw. ihre Skripte mit
+  `RAVG_...`-Aufrufen kaputt machen — das wiegt schwerer als die Namenskonsistenz im Verbund.
+  **Lehre:** Bei Store-gelisteten Modulen mit echten Downloadzahlen gilt die TOOLKIT.md-
+  Einfrier-Faustregel strenger als bei brandneuen Modulen (vgl. Schein/Anwesenheitssimulation,
+  wo Klasse=Anzeigename noch frei wählbar war) — vor einem geplanten Technik-Rename immer
+  zuerst die reale Nutzerzahl klären, nicht erst danach.
+- **Repo-Umbenennung `DG65/NRGGleitenderMittelwert`→`DG65/Messwertrechner` ist freigegeben**
+  (Store-Nutzer installieren über den Store, nicht über die Git-URL direkt) — Ausführung hängt
+  an Dietmars Bestätigung, wer den `gh repo rename`-Befehl ausführt; danach alle URLs in
+  `library.json`/`module.json`/README/`LICENSE_URL` nachziehen.
 - GUID (Bibliothek `{E52A0AC2-...}` und Modul `{83996C8A-...}`) bleibt in jedem Fall unverändert.
 
 **Ältere Umbenennung 09.09.2026 (historisch, inzwischen überholt):** Das Modul heißt jetzt **„Destille"** — Ergebnis eines

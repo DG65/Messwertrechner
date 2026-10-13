@@ -1,14 +1,14 @@
 # Messwertrechner (vormals Destille, davor Gleitender Mittelwert)
 
 ![Symcon](https://img.shields.io/badge/Symcon-PHPModul-blue)
-![Modul Version](https://img.shields.io/badge/Modul_Version-1.12.3-blue)
+![Modul Version](https://img.shields.io/badge/Modul_Version-1.12.4-blue)
 ![Symcon Version](https://img.shields.io/badge/Symcon_Version-9.0%2B-blue)
 ![License](https://img.shields.io/badge/License-PolyForm_Noncommercial_1.0.0-lightgrey)
 [![PayPal](https://img.shields.io/badge/PayPal-Me-blue?logo=paypal)](https://paypal.me/DietmarGureth)
 
 IP-Symcon-Modul, das aus rohen, verrauschten Werten beliebiger Variablen laufend etwas Klareres destilliert: Mittelwert, Trend, Integration über Zeit, Schwellwert mit Hysterese, freie Formel — konfigurierbar über eine Liste von Kanälen, ganz ohne Abhängigkeit vom Archiv-System.
 
-**Namenshinweis:** Das DG65-Toolkit stellt seine Mitglieder von Behörden-/Personen-Namen auf Funktionsnamen um (13.10.2026) — dieses Modul heißt jetzt **„Messwertrechner"** (Zwischenstand „Destille" bis 1.12.2, ursprünglich „Gleitender Mittelwert" bis 1.12.1). **Aktuell nur der Anzeigename geändert** (`library.json→name`, `module.json→aliases`) — Klassenname (`RollingAverage`), Präfix (`RAVG_`), Modulordner und Repo-URL bleiben vorerst unverändert, da dieses Modul im Symcon Store gelistet ist und erst nach Prüfung auf fremde Installationen vollständig technisch umgestellt werden darf (siehe `TOOLKIT.md`, Abschnitt „Umbenennung auf Funktionsnamen"). Modul-ID und alle Bestandsinstanzen bleiben in jedem Fall unverändert.
+**Namenshinweis:** Das DG65-Toolkit stellt seine Mitglieder von Behörden-/Personen-Namen auf Funktionsnamen um (13.10.2026) — dieses Modul heißt jetzt **„Messwertrechner"** (Zwischenstand „Destille" bis 1.12.2, ursprünglich „Gleitender Mittelwert" bis 1.12.1). **Nur der Anzeigename ändert sich** (`library.json→name`, `module.json→aliases`) — Klassenname (`RollingAverage`), Präfix (`RAVG_`) und Modulordner bleiben **dauerhaft** unverändert: Die Symcon-Store-Statistik zeigt reale Installationen bei fremden Nutzern (Bundle „Mittelwertberechnungen", 42 Downloads seit Juli 2026), ein Klassenname-/Präfix-Wechsel würde deren Instanzen brechen (siehe `TOOLKIT.md`, Abschnitt „Umbenennung auf Funktionsnamen"). Modul-ID und alle Bestandsinstanzen sind davon ohnehin nicht betroffen. Die GitHub-Repo-Umbenennung auf `DG65/Messwertrechner` ist freigegeben, aber noch nicht ausgeführt — bis dahin gilt die Installations-URL unten.
 
 ## DG65-Toolkit
 

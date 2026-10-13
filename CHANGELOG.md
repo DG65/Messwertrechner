@@ -3,6 +3,12 @@
 Alle nennenswerten Änderungen an diesem Modul werden hier dokumentiert.
 Format angelehnt an [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
 
+## [1.12.4] - 2026-10-13
+
+### Changed
+- **Klassenname (`RollingAverage`) und Präfix (`RAVG_`) bleiben dauerhaft unverändert** — Dietmar hat die Symcon-Store-Statistik geprüft: Bundle „Mittelwertberechnungen", 42 Downloads seit Juli 2026, reale Installationen bei fremden Nutzern so gut wie sicher. Der zuvor auf einem separaten Branch vorbereitete vollständige technische Rename wurde verworfen, um deren Instanzen/Skripte nicht zu brechen. Die Repo-Umbenennung auf `DG65/Messwertrechner` ist freigegeben, aber noch nicht ausgeführt.
+- Formular: neuer „Neu in Version"-Eintrag erklärt die Umbenennung zu „Messwertrechner" (sonst keine funktionale Änderung); Doku-Panel-Versionstext ebenfalls auf den neuen Namen umgestellt.
+
 ## [1.12.3] - 2026-10-13
 
 ### Changed

@@ -7,7 +7,7 @@ class RollingAverage extends IPSModule
     // Formular-Konvention (SUITE.md "Einheitliche Formular-Optik"),
     // nachgezogen 08.09.2026 im Zuge von Dietmars Verbund-Manifest-Abgleich
     // — Muster 1:1 aus MeterHub übernommen (dortige Referenzimplementierung).
-    private const NEWS_VERSION = '1.12.0';
+    private const NEWS_VERSION = '1.12.4';
     private const FORUM_THREAD_URL = 'https://community.symcon.de/t/modul-gleitender-mittelwert-mittelwertberechnungen/144104/3';
     private const LICENSE_URL = 'https://github.com/DG65/NRGGleitenderMittelwert/blob/main/LICENSE';
     private const PAYPAL_URL = 'https://paypal.me/DietmarGureth';
@@ -61,7 +61,7 @@ class RollingAverage extends IPSModule
             'type' => 'ExpansionPanel', 'name' => 'PurposeIntroPanel', 'expanded' => true,
             'caption' => '👋  Wozu dieses Modul?',
             'items' => [
-                ['type' => 'Label', 'caption' => 'Gleitender Mittelwert berechnet aus beliebigen IP-Symcon-Variablen laufend einen Mittelwert (oder Median, Minimum, Maximum, Summe, Standardabweichung, EMA …) über ein frei wählbares Zeitfenster — archivfrei, per Live-Sampling in einem versteckten Ringpuffer.'],
+                ['type' => 'Label', 'caption' => 'Messwertrechner berechnet aus beliebigen IP-Symcon-Variablen laufend einen Mittelwert (oder Median, Minimum, Maximum, Summe, Standardabweichung, EMA …) über ein frei wählbares Zeitfenster — archivfrei, per Live-Sampling in einem versteckten Ringpuffer.'],
                 ['type' => 'Label', 'caption' => 'Der Nutzen: geglättete, weniger schwankende Werte für Anzeigen, Diagramme oder Steuerungsentscheidungen (z. B. PV-Überschuss über 5 Minuten statt jeder einzelnen Messspitze) — ganz gleich, aus welchem Modul die Quellwerte stammen.'],
                 ['type' => 'Button', 'caption' => 'Verstanden – nicht mehr anzeigen', 'onClick' => 'RAVG_AckPurposeIntro($id);'],
             ],
@@ -84,7 +84,8 @@ class RollingAverage extends IPSModule
             'type' => 'ExpansionPanel', 'name' => 'NewsPanel', 'expanded' => true,
             'caption' => '🆕  Neu in Version ' . self::NEWS_VERSION,
             'items' => [
-                ['type' => 'Label', 'caption' => '• 🆕 Neue Option „Ausreißer filtern" (für die Fenster-Methoden 0-8): verwirft einzelne Sensor-Ausrutscher, die zu weit vom bisherigen Fenster-Durchschnitt abweichen (einstellbare Schwelle in Vielfachen der Standardabweichung), bevor sie den Mittelwert verzerren.'],
+                ['type' => 'Label', 'caption' => '• 🆕 Dieses Modul heißt jetzt „Messwertrechner" (vorher „Gleitender Mittelwert"/„Destille") — reine Umbenennung im Zuge der DG65-Toolkit-Namensvereinheitlichung, sonst bleibt alles gleich: Instanzen, Variablen, Konfiguration und Funktionsweise sind unverändert.'],
+                ['type' => 'Label', 'caption' => '• „Ausreißer filtern" (für die Fenster-Methoden 0-8): verwirft einzelne Sensor-Ausrutscher, die zu weit vom bisherigen Fenster-Durchschnitt abweichen (einstellbare Schwelle in Vielfachen der Standardabweichung), bevor sie den Mittelwert verzerren.'],
                 ['type' => 'Button', 'caption' => 'Verstanden – nicht mehr anzeigen', 'onClick' => 'RAVG_AckNews($id);'],
             ],
         ];
@@ -156,7 +157,7 @@ class RollingAverage extends IPSModule
             'type' => 'ExpansionPanel', 'expanded' => false,
             'caption' => '📖  Dokumentation & Hilfe',
             'items' => [
-                ['type' => 'Label', 'caption' => 'Gleitender Mittelwert ' . self::NEWS_VERSION . ' — Stand dieser Anleitung.'],
+                ['type' => 'Label', 'caption' => 'Messwertrechner ' . self::NEWS_VERSION . ' — Stand dieser Anleitung.'],
                 ['type' => 'Label', 'caption' => 'Kanal anlegen: Bezeichnung vergeben, Quelle wählen, Fenster (Wert + Einheit) und Berechnungsmethode festlegen. Details zu den 12 Methoden stehen im Panel „Doku: Berechnungsmethoden" weiter unten.'],
                 ['type' => 'Label', 'caption' => '„Ausreißer filtern" (nur bei den Fenster-Methoden 0-8 wirksam) verwirft einzelne Sensor-Ausrutscher automatisch, bevor sie den Mittelwert verzerren — Schwelle als Vielfaches der Standardabweichung, siehe Doku-Panel weiter unten.'],
                 ['type' => 'Label', 'caption' => 'Pro Kanal entstehen zwei Variablen: der berechnete Wert (Anzeige) und ein versteckter Ringpuffer bzw. Integrations-Speicher (interner Zwischenspeicher, kein Symcon-Archiv nötig).'],
