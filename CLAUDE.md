@@ -1,6 +1,27 @@
-# Destille, vormals GleitenderMittelwert (RollingAverage) — Hinweise für die Arbeit an diesem Repository
+# Messwertrechner, vormals Destille/GleitenderMittelwert (RollingAverage) — Hinweise für die Arbeit an diesem Repository
 
-**Umbenennung 09.09.2026:** Das Modul heißt jetzt **„Destille"** — Ergebnis eines
+**Umbenennung 13.10.2026 (in Umsetzung, Teil 1 von 2 abgeschlossen):** Verbundweite Umstellung
+aller DG65-Toolkit-Mitglieder von Behörden-/Personen-Namen auf Funktionsnamen (Dietmar, über die
+Automat-Sitzung koordiniert — siehe `TOOLKIT.md` Abschnitt „Umbenennung auf Funktionsnamen").
+Dieses Modul heißt jetzt **„Messwertrechner"**. Schreibweise des Verbunds zugleich auf
+„DG65-Toolkit" (mit Bindestrich) vereinheitlicht.
+
+- **Erledigt:** `library.json→name` = „DG65-Toolkit Messwertrechner", `module.json→aliases` =
+  genau `["DG65-Toolkit Messwertrechner"]` (ältere Aliase „Gleitender Mittelwert"/„Destille"
+  entfernt — Verbundregel „genau EIN Alias"). README/CHANGELOG nachgezogen. Version 1.12.3,
+  auf `beta` gepusht.
+- **Gesperrt bis Dietmar bestätigt, dass es keine fremden Store-Installationen gibt:**
+  Klassenname `RollingAverage`→`Messwertrechner`, Modulordner `RollingAverage/`→
+  `Messwertrechner/`, Präfix `RAVG`→`MWR`, Repo-Umbenennung `DG65/NRGGleitenderMittelwert`→
+  `DG65/Messwertrechner`. Grund: dieses Modul ist im Symcon Store gelistet
+  ("Mittelwertberechnungen") — ein Klassenname-Wechsel bricht jede bestehende Instanz
+  ("Class ... does not exist", siehe [[ips-module-pitfalls]] Punkt 4), auch bei Nutzern, die
+  nie mit Dietmar in Kontakt stehen. **Vollständig vorbereitet auf dem lokalen Branch
+  `rename-messwertrechner`** (nicht gepusht, nicht gemergt) — sobald Dietmar grünes Licht gibt,
+  diesen Branch fertigstellen/mergen statt neu zu entwerfen.
+- GUID (Bibliothek `{E52A0AC2-...}` und Modul `{83996C8A-...}`) bleibt in jedem Fall unverändert.
+
+**Ältere Umbenennung 09.09.2026 (historisch, inzwischen überholt):** Das Modul heißt jetzt **„Destille"** — Ergebnis eines
 gemeinsamen, spielerischen Namensfindungsprozesses aller vier DG65-Toolkit-Mitglieder
 (Dietmars Wunsch: zweideutig/anregend statt nur beschreibend). Umgesetzt nach dem
 in diesem Dokument selbst dokumentierten sicheren Muster: NUR `library.json→name`

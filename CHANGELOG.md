@@ -3,6 +3,12 @@
 Alle nennenswerten Änderungen an diesem Modul werden hier dokumentiert.
 Format angelehnt an [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
 
+## [1.12.3] - 2026-10-13
+
+### Changed
+- Modul umbenannt: „Destille" → **„Messwertrechner"** — verbundweite Umstellung aller DG65-Toolkit-Mitglieder von Behörden-/Personen-Namen auf Funktionsnamen (Dietmar, 13.10.2026, koordiniert aus der Automat-Sitzung, siehe `TOOLKIT.md` Abschnitt „Umbenennung auf Funktionsnamen"). Schreibweise des Verbunds zugleich auf „DG65-Toolkit" (mit Bindestrich) vereinheitlicht.
+- **Nur der Anzeigename geändert** (`library.json→name` = „DG65-Toolkit Messwertrechner", `module.json→aliases` auf genau einen Eintrag reduziert). Klassenname (`RollingAverage`), Präfix (`RAVG_`), Modulordner und Repo-URL bleiben bewusst vorerst unverändert — dieses Modul ist im Symcon Store gelistet, ein Klassenname-/Präfix-Wechsel würde jede fremde Bestandsinstanz brechen. Der vollständige technische Rename ist lokal auf einem separaten Branch vorbereitet und wartet auf Dietmars Bestätigung, dass es keine fremden Installationen gibt.
+
 ## [1.12.2] - 2026-09-09
 
 ### Changed

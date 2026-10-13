@@ -1,18 +1,18 @@
-# Destille (vormals Gleitender Mittelwert)
+# Messwertrechner (vormals Destille, davor Gleitender Mittelwert)
 
 ![Symcon](https://img.shields.io/badge/Symcon-PHPModul-blue)
-![Modul Version](https://img.shields.io/badge/Modul_Version-1.12.2-blue)
+![Modul Version](https://img.shields.io/badge/Modul_Version-1.12.3-blue)
 ![Symcon Version](https://img.shields.io/badge/Symcon_Version-9.0%2B-blue)
 ![License](https://img.shields.io/badge/License-PolyForm_Noncommercial_1.0.0-lightgrey)
 [![PayPal](https://img.shields.io/badge/PayPal-Me-blue?logo=paypal)](https://paypal.me/DietmarGureth)
 
 IP-Symcon-Modul, das aus rohen, verrauschten Werten beliebiger Variablen laufend etwas Klareres destilliert: Mittelwert, Trend, Integration über Zeit, Schwellwert mit Hysterese, freie Formel — konfigurierbar über eine Liste von Kanälen, ganz ohne Abhängigkeit vom Archiv-System.
 
-**Namenshinweis:** Bis Version 1.12.1 hieß dieses Modul „Gleitender Mittelwert" — der neue Name spiegelt den inzwischen deutlich gewachsenen Funktionsumfang (nicht mehr nur Mittelwertbildung). Technisch ändert sich nichts: Klassenname, Modul-ID und alle Bestandsinstanzen bleiben unverändert, „Gleitender Mittelwert" bleibt als Alias auffindbar (`module.json→aliases`).
+**Namenshinweis:** Das DG65-Toolkit stellt seine Mitglieder von Behörden-/Personen-Namen auf Funktionsnamen um (13.10.2026) — dieses Modul heißt jetzt **„Messwertrechner"** (Zwischenstand „Destille" bis 1.12.2, ursprünglich „Gleitender Mittelwert" bis 1.12.1). **Aktuell nur der Anzeigename geändert** (`library.json→name`, `module.json→aliases`) — Klassenname (`RollingAverage`), Präfix (`RAVG_`), Modulordner und Repo-URL bleiben vorerst unverändert, da dieses Modul im Symcon Store gelistet ist und erst nach Prüfung auf fremde Installationen vollständig technisch umgestellt werden darf (siehe `TOOLKIT.md`, Abschnitt „Umbenennung auf Funktionsnamen"). Modul-ID und alle Bestandsinstanzen bleiben in jedem Fall unverändert.
 
-## DG65 Toolkit
+## DG65-Toolkit
 
-Teil des **DG65 Toolkit** — domänenfreie, wiederverwendbare Symcon-Bausteine (im Unterschied zum energiespezifischen NRG-Stack desselben Autors). Weitere Mitglieder: Katasteramt (Objektbaum-Organisation, vormals StrukturHub), Pförtner (Formular-Zugriffsschutz, vormals Türöffner), Vormund (Modul-Migration, vormals MigrationsHub). Ein Toolkit-Modul funktioniert immer für sich allein und setzt kein anderes voraus — geteilt werden Entwicklungskonventionen, kein Laufzeit-Vertrag.
+Teil des **DG65-Toolkit** — domänenfreie, wiederverwendbare Symcon-Bausteine (im Unterschied zum energiespezifischen NRG-Stack desselben Autors). Weitere Mitglieder (Stand 13.10.2026, Namen teils ebenfalls im Umbau auf Funktionsnamen): Raumstruktur (Objektbaum-Organisation, vormals Katasteramt/StrukturHub), Formularschutz (Formular-Zugriffsschutz, vormals Pförtner/Türöffner), Gerätetausch (Modul-Migration, vormals Vormund/MigrationsHub), Anwesenheitssimulation (vormals Schein), Batteriewächter, Automat. Ein Toolkit-Modul funktioniert immer für sich allein und setzt kein anderes voraus — geteilt werden Entwicklungskonventionen, kein Laufzeit-Vertrag.
 
 ## Wofür braucht man das?
 

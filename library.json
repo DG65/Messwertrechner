@@ -1,12 +1,12 @@
 {
   "id": "{E52A0AC2-D2DD-4B7D-97BC-CC07AD8DD1AA}",
   "author": "DG65",
-  "name": "DG65 Toolkit Destille",
+  "name": "DG65-Toolkit Messwertrechner",
   "url": "https://github.com/DG65/NRGGleitenderMittelwert",
   "compatibility": {
     "version": "9.0"
   },
-  "version": "1.12.2",
-  "build": 20260908,
-  "date": 1788825600
+  "version": "1.12.3",
+  "build": 20261013,
+  "date": 1791849600
 }
