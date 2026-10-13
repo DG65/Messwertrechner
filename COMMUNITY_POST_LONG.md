@@ -4,9 +4,9 @@ Hallo zusammen,
 
 ich möchte euch mein neues Modul vorstellen: **Gleitender Mittelwert**, verfügbar über den Module Store oder direkt per GitHub-URL.
 
-**GitHub:** https://github.com/DG65/NRGGleitenderMittelwert
+**GitHub:** https://github.com/DG65/Messwertrechner
 **Lizenz:** MIT
-**Aktuelle Version:** siehe [CHANGELOG](https://github.com/DG65/NRGGleitenderMittelwert/blob/main/CHANGELOG.md)
+**Aktuelle Version:** siehe [CHANGELOG](https://github.com/DG65/Messwertrechner/blob/main/CHANGELOG.md)
 
 ## Die Ausgangslage
 
@@ -50,7 +50,7 @@ Ein Fall, der mich ursprünglich zum Umbauen gebracht hat: ein PV-Überschusswer
 ## Installation
 
 - **Module Store:** Modulverwaltung → Hinzufügen → nach „Mittelwertberechnungen" suchen
-- **Per URL:** Modulverwaltung → Hinzufügen → `https://github.com/DG65/NRGGleitenderMittelwert`
+- **Per URL:** Modulverwaltung → Hinzufügen → `https://github.com/DG65/Messwertrechner`
 
 Danach eine Instanz vom Typ „Gleitender Mittelwert" anlegen und Kanäle konfigurieren.
 

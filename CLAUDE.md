@@ -22,10 +22,10 @@ zugleich auf „DG65-Toolkit" (mit Bindestrich) vereinheitlicht.
   Einfrier-Faustregel strenger als bei brandneuen Modulen (vgl. Schein/Anwesenheitssimulation,
   wo Klasse=Anzeigename noch frei wählbar war) — vor einem geplanten Technik-Rename immer
   zuerst die reale Nutzerzahl klären, nicht erst danach.
-- **Repo-Umbenennung `DG65/NRGGleitenderMittelwert`→`DG65/Messwertrechner` ist freigegeben**
-  (Store-Nutzer installieren über den Store, nicht über die Git-URL direkt) — Ausführung hängt
-  an Dietmars Bestätigung, wer den `gh repo rename`-Befehl ausführt; danach alle URLs in
-  `library.json`/`module.json`/README/`LICENSE_URL` nachziehen.
+- **Repo umbenannt:** `DG65/NRGGleitenderMittelwert` → `DG65/Messwertrechner` (`gh repo rename`,
+  13.10.2026 — Dietmar hat ausdrücklich zugestimmt, dass ich den Befehl selbst ausführe; alte
+  URL leitet per GitHub-301 automatisch weiter). Lokaler `git remote` sowie alle URLs in
+  `library.json`/`module.json`/`LICENSE_URL`/README/`COMMUNITY_POST*.md` nachgezogen.
 - GUID (Bibliothek `{E52A0AC2-...}` und Modul `{83996C8A-...}`) bleibt in jedem Fall unverändert.
 
 **Ältere Umbenennung 09.09.2026 (historisch, inzwischen überholt):** Das Modul heißt jetzt **„Destille"** — Ergebnis eines
@@ -118,11 +118,10 @@ Sitzung sucht unabhängig aus der eigenen fachlichen Perspektive (hier:
 Richtung Berechnung/Datenverarbeitung/Formeln), Ergebnisse werden bei
 Dietmar zusammengeführt und dort auf Überschneidung/Ergänzung geprüft.
 
-**Offen/nicht entschieden:** Der GitHub-Repo-Name (`NRGGleitenderMittelwert`)
-trägt weiterhin das `NRG`-Präfix aus der Zeit vor dieser Klärung — eine
-Repo-Umbenennung wurde bewusst NICHT eigenmächtig vorgenommen (bricht
-Store-Listing-URL und bestehende Klon-Links), das ist eine Entscheidung,
-die Dietmar explizit treffen muss.
+**Erledigt (13.10.2026):** Der GitHub-Repo-Name trug lange das `NRG`-Präfix aus der Zeit vor
+dieser Klärung — mit Dietmars ausdrücklicher Zustimmung umbenannt zu `DG65/Messwertrechner`
+(siehe Umbenennungs-Abschnitt ganz oben). Die alte Store-Listing-URL/bestehende Klon-Links
+funktionieren über GitHubs automatische Weiterleitung weiter.
 
 **Hilfsmodul, kein Verbund-Vertrag.** Berechnet gleitende Mittelwerte
 beliebiger Variablen ohne Archiv-Abhängigkeit (Live-Sampling in einen

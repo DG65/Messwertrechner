@@ -9,7 +9,7 @@ class RollingAverage extends IPSModule
     // — Muster 1:1 aus MeterHub übernommen (dortige Referenzimplementierung).
     private const NEWS_VERSION = '1.12.4';
     private const FORUM_THREAD_URL = 'https://community.symcon.de/t/modul-gleitender-mittelwert-mittelwertberechnungen/144104/3';
-    private const LICENSE_URL = 'https://github.com/DG65/NRGGleitenderMittelwert/blob/main/LICENSE';
+    private const LICENSE_URL = 'https://github.com/DG65/Messwertrechner/blob/main/LICENSE';
     private const PAYPAL_URL = 'https://paypal.me/DietmarGureth';
 
     // Presets für Methode 9 (Integration): je Wert [ResetIntervall,

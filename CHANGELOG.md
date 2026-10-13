@@ -3,6 +3,12 @@
 Alle nennenswerten Änderungen an diesem Modul werden hier dokumentiert.
 Format angelehnt an [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
 
+## [1.12.5] - 2026-10-13
+
+### Changed
+- GitHub-Repo umbenannt: `DG65/NRGGleitenderMittelwert` → `DG65/Messwertrechner` (`gh repo rename`, mit Dietmars ausdrücklicher Zustimmung). Alte URL leitet automatisch weiter (GitHub-301), bestehende Installationen/Klon-Links bleiben funktionsfähig.
+- Alle URLs in `library.json`, `module.json`, `LICENSE_URL` (`module.php`), README und den Community-Post-Texten auf das neue Repo umgestellt. Klassenname (`RollingAverage`), Präfix (`RAVG_`) und Modulordner bleiben wie in 1.12.4 beschlossen unverändert.
+
 ## [1.12.4] - 2026-10-13
 
 ### Changed

@@ -1,7 +1,7 @@
 # Messwertrechner (vormals Destille, davor Gleitender Mittelwert)
 
 ![Symcon](https://img.shields.io/badge/Symcon-PHPModul-blue)
-![Modul Version](https://img.shields.io/badge/Modul_Version-1.12.4-blue)
+![Modul Version](https://img.shields.io/badge/Modul_Version-1.12.5-blue)
 ![Symcon Version](https://img.shields.io/badge/Symcon_Version-9.0%2B-blue)
 ![License](https://img.shields.io/badge/License-PolyForm_Noncommercial_1.0.0-lightgrey)
 [![PayPal](https://img.shields.io/badge/PayPal-Me-blue?logo=paypal)](https://paypal.me/DietmarGureth)
@@ -35,7 +35,7 @@ Dieses Modul sampelt stattdessen den aktuellen Live-Wert der Quelle in einem fes
 
 ## Installation
 
-1. In der IP-Symcon-Konsole: **Modulverwaltung → Hinzufügen** und die URL dieses Repositories eintragen: `https://github.com/DG65/NRGGleitenderMittelwert`
+1. In der IP-Symcon-Konsole: **Modulverwaltung → Hinzufügen** und die URL dieses Repositories eintragen: `https://github.com/DG65/Messwertrechner`
 2. Eine neue Instanz vom Typ **„Gleitender Mittelwert"** anlegen.
 
 ## Konfiguration

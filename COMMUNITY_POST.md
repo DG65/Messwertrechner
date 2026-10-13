@@ -4,7 +4,7 @@ Hallo zusammen,
 
 ich möchte euch ein kleines Modul vorstellen, das ich für ein wiederkehrendes Problem gebaut habe: gleitende Mittelwerte beliebiger Variablen berechnen, ohne dafür jedes Mal ein eigenes Skript oder Ereignis zu bauen.
 
-**GitHub:** https://github.com/DG65/NRGGleitenderMittelwert
+**GitHub:** https://github.com/DG65/Messwertrechner
 **Lizenz:** MIT
 
 ## Wofür?
@@ -36,7 +36,7 @@ Das Modul sampelt stattdessen den Live-Wert der Quelle in einem festen Takt und 
 
 **Über den Module Store:** Modulverwaltung → Hinzufügen → nach „Mittelwertberechnungen" bzw. „Gleitender Mittelwert" suchen und installieren.
 
-**Alternativ per URL:** Modulverwaltung → Hinzufügen → `https://github.com/DG65/NRGGleitenderMittelwert`
+**Alternativ per URL:** Modulverwaltung → Hinzufügen → `https://github.com/DG65/Messwertrechner`
 
 Danach:
 1. Neue Instanz vom Typ „Gleitender Mittelwert" anlegen
